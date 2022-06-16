@@ -1,0 +1,36 @@
+enable
+configure terminal
+ip routing
+vlan 10
+name pc
+exit
+vlan 20
+name lap
+exit
+
+interface range fa0/1-12
+switchport mode access
+switchport access vlan 10
+no shut
+exit
+
+interface range fa0/13-24
+switchport mode access
+switchport access vlan 20
+no shut
+exit
+
+interface vlan10
+description Gateway para a VLAN 10
+ip address 192.168.10.1 255.255.255.0
+no shutdown
+exit
+
+interface vlan20
+description Gateway para a VLAN 20
+ip address 192.168.20.1 255.255.255.0
+no shutdown
+exit
+exit
+
+copy running startup
